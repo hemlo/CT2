@@ -52,8 +52,6 @@
 					},
 					success: function(json){
 						var trHTML = '';
-					    //alert(json.error);//Error checking does not work.  
-					    //if(json.error === 'undefined') alert("undefined");
 					    if($.trim(json.error)) { 
 					    	alert(json.error);
 					    	return;
@@ -88,8 +86,6 @@
 					},
 					success: function(json){
 						var trHTML = '';
-					    //alert(json.error);//Error checking does not work.  
-					    //if(json.error === 'undefined') alert("undefined");
 					    if($.trim(json.error)) { alert(json.error); return;}
 						trHTML = '<table><tr><th>Tag Number</th><th>Number of Visits</th><th>Date of Last Visit</th></tr>';
 						$.each(json, function(index, element){
@@ -125,19 +121,24 @@
 					type: "db_search",
 				},
 			success: function(json){
-				if($.trim(json.error)) { alert(json.error);}
+				if($.trim(json.error)) { alert(json.error); return;}
 				trHTML = '<table><tr><th>Animal ID</th><th>Age</th><th>Weight</th><th>Sire ID</th><th>Dame ID</th></tr>';
 				$.each(json, function(index, element){
 					trHTML += '<tr><td>' + element.animal_id + '</td><td>' + + element.age + '</td><td>' + element.weight + '</td><td>' + element.sire_id + '</td><td>' + element.dame_id + '</td></tr>';
 				});
 				trHTML += '</table>';
 				//alert(json[0].weight);
-				$("#land2").html(trHTML);
+				$("#land").html(trHTML);
 			},
 			});
 		});
 	});
 	</script>
+<script>
+	$("#db_table").click(function(){
+		alert("you clicked me");
+	});
+</script>
 </head>
 <body>
 
@@ -156,5 +157,6 @@ Animal ID: <input type="numeric" id="animal_id"><br></input>
 </form>
 </div>
 <div class="landing2" id="land2"</div>
+
 </body>
 </html>

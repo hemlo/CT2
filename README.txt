@@ -34,29 +34,29 @@ sudo python setup.py install
 TODO:
 
 Database:
-Add/Delete Cow Procedure
-Update Cow Procedure
-Add vaccination data.  Need to figure out how to actually store/display these.  
-Add Users/Logins
-Expand search functionality to include herd and pasture.
+#Add/Delete Cow Procedure
+#Update Cow Procedure
+#Add vaccination data.  Need to figure out how to actually store/display these.  
+#Add Users/Logins
+#Expand search functionality to include herd and pasture.
 
 
 RPI:
-Learn more about SQL Alchemy's timeouts, connection pooling, etc., to improve functionality
-Format log file.  Should we create our own error messages/codes?
-Pi will lose data if it has lost signal, read tags, then lost power before reconnecting to the DB.
+#Learn more about SQL Alchemy's timeouts, connection pooling, etc., to improve functionality
+#Format log file.  Should we create our own error messages/codes?
+#Pi will lose data if it has lost signal, read tags, then lost power before reconnecting to the DB.
 	How can we correct this?
 
 
 HTML:
-Make list of animals that visited feeder clickable.  Click calls pop-up that displays vitals.
-Validate input for all of our user fields.
-Create user login and authentications
+#Make list of animals that visited feeder clickable.  Click calls pop-up that displays vitals.
+#Validate input for all of our user fields.  **Need to validate Sire and Dam animal_id when adding to vitals.
+
+#Create user login and authentications
 
 
 24 Hour Maintenance:  
-Daily report including upcoming vaccination dates for animals, upcoming delivery dates, animals 
-	that have not visited the mineral feeder in 3 days.  
+#Daily report including upcoming vaccination dates for animals, upcoming delivery dates, animals that have not visited the mineral feeder in 3 days.  
 
 
 
