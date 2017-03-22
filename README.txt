@@ -53,7 +53,7 @@ HTML:
 #Validate input for all of our user fields.  **Need to validate Sire and Dam animal_id when adding to vitals.
 
 #Create user login and authentications
-
+#Check out Drop Down Menu/Text field in one on StackOverflow for example on how to do vaccines.
 
 24 Hour Maintenance:  
 #Daily report including upcoming vaccination dates for animals, upcoming delivery dates, animals that have not visited the mineral feeder in 3 days.  
