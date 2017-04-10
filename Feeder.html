@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <? php
 include_once 'PHP/pfunctions.php'
@@ -14,13 +13,11 @@ include_once 'PHP/pfunctions.php'
   
   
 <style type="text/css">
-
 /***************-----START TOOLBAR-----***************/
 /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 *, *:after, *:before {
   box-sizing: border-box;
 }
-
 .animenu__toggle {
   display: none;
   cursor: pointer;
@@ -33,7 +30,6 @@ include_once 'PHP/pfunctions.php'
 .animenu__toggle:hover {
   background-color: #0186ba;
 }
-
 .animenu__toggle__bar {
   display: block;
   width: 20px;
@@ -44,7 +40,6 @@ include_once 'PHP/pfunctions.php'
 .animenu__toggle__bar + .animenu__toggle__bar {
   margin-top: 4px;
 }
-
 .animenu__toggle--active .animenu__toggle__bar {
   margin: 0;
   position: absolute;
@@ -58,7 +53,6 @@ include_once 'PHP/pfunctions.php'
 .animenu__toggle--active .animenu__toggle__bar:nth-child(3) {
   transform: rotate(-45deg);
 }
-
 .animenu {
   display: block;
 }
@@ -71,13 +65,11 @@ include_once 'PHP/pfunctions.php'
   display: inline-block;
   font-size: 15px;
 }
-
 /* Menu Bar Text */
 .animenu a {
   color: #cccc99;
   text-decoration: none;
 }
-
 .animenu__nav {
   background-color: #134;
   position: relative;
@@ -108,7 +100,6 @@ include_once 'PHP/pfunctions.php'
 .animenu__nav > li:hover > a {
   color: #fff;
 }
-
 .animenu__nav__child {
   min-width: 100%;
   position: absolute;
@@ -149,7 +140,6 @@ include_once 'PHP/pfunctions.php'
   border-color: #0186ba;
   color: #fff;
 }
-
 @media screen and (max-width: 767px) {
   .animenu__toggle {
     display: inline-block;
@@ -157,7 +147,6 @@ include_once 'PHP/pfunctions.php'
   .animenu__nav, .animenu__nav__child {
       display: none;
    }
-
   .animenu__nav {
     margin: 10px 0;
   }
@@ -191,7 +180,6 @@ include_once 'PHP/pfunctions.php'
     border-color: #0186ba;
     color: #fff;
   }
-
   .animenu__nav__child {
     position: static;
     background-color: #55552b;
@@ -215,8 +203,6 @@ include_once 'PHP/pfunctions.php'
   display: block;
 }
 /***************-----END TOOLBAR-----***************/
-
-
 /* MAIN CONTAINER FOR Video AND 24 Hours, 7 Day, 30 Day Feed */
 #containerMain {
    height: 65%;
@@ -228,7 +214,6 @@ include_once 'PHP/pfunctions.php'
    bottom: 17.5%;
    width: 90%;
 }
-
 /***** Containers for Video Feed AND Buttons ******/
 /*---------------------------------------*/
 /* M - Holds(Video, and then */
@@ -242,10 +227,8 @@ include_once 'PHP/pfunctions.php'
    width: 50%; 
    background-color: rgba(255, 216, 0, 0.4);     
 }
-
 /***** 24 Hours, 7 Day, 30 Day Feed ******/
 /*---------------BEGIN--------------------*/
-
 /* Container for 24 Hours, 7 Day, 30 Day Feed */
 #containerFeed{
    bottom: 0;
@@ -255,7 +238,6 @@ include_once 'PHP/pfunctions.php'
    top: 0;
    width: 50%;   
 }
-
 /* Style the tab */
 div.tab {
     position: relative;
@@ -263,7 +245,6 @@ div.tab {
     background-color: #134; /* Tab Background Color */
     width: 100%;
 }
-
 /* Style the links inside the tab */
 div.tab a {
     position: relative;
@@ -278,17 +259,14 @@ div.tab a {
     font-size : 2vw;overflow: hidden;
     border: 3px solid #cccc99; /* Tab Inside Border Color */
 }
-
 /* Change background color of links on hover */
 div.tab a:hover {
     background-color: #55552b; /* Hover Color */
 }
-
 /* Create an active/current tablink class */
 div.tab a:focus, .active {
     background-color: #55552b; /* Clicked Color */
 }
-
 /* Style the tab content */
 .tabcontent {
     position: relative;
@@ -299,10 +277,7 @@ div.tab a:focus, .active {
     border-top: none;
     border-bottom: none;
 }
-
-
 /***** ---END--- Containers for Video Feed AND Buttons ******/
-
 html, body {
    margin: 0; 
    padding: 0; 
@@ -312,7 +287,6 @@ html, body {
    text-align: left;
    font-family: "Lato", sans-serif;
 }
-
 /* Background Photo Scale to fit */
 html { 
   background: url(Images/photo_bg.jpg) no-repeat center center fixed; 
@@ -321,9 +295,6 @@ html {
   -o-background-size: cover;
   background-size: cover;
 }
-
-
-
 /* TEST TABLEEEEE *************/
 h1{
   font-size: 30px;
@@ -367,15 +338,11 @@ td{
   color: #000;
   border-bottom: solid 2px rgba(255, 216, 0, 0.4);
 }
-
 /* demo styles */
-
 section{
   margin: 50px;
 }
-
 /* for custom scrollbar for webkit browser*/
-
 ::-webkit-scrollbar {
     width: 6px;
 } 
@@ -386,7 +353,6 @@ section{
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
 }
 /*TEST TABLE END*/
-
 </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -445,9 +411,7 @@ section{
           error: function(text){
             $("#24HourTbl").html(text);
           },
-
 }*/
-
     $(document).ready(function(){
       $("#containterVideo").click(function(e){
         e.preventDefault();
@@ -526,21 +490,12 @@ section{
                <table cellpadding="0" cellspacing="0" border="0">
                   <tbody>
 
-                   <!--  <tr>
-                        <td>222</td>
-                        <td>7:13 P.M.</td>
-                     </tr>
-                     <tr>
-                        <td>333</td>
-                        <td>10:43 P.M.</td>
-                     </tr> -->
-
                   </tbody>
                </table>
             </div>
          </div>   
                 
-      <div id="30 Days" class="tabcontent"x>
+      <div id="30 Days" class="tabcontent" id="tabl30-content">
          <h1>30 Day Feed</h1>
             <div class="tbl-header">
                <table cellpadding="0" cellspacing="0" border="0">
@@ -552,7 +507,7 @@ section{
                   </thead>
                </table>
             </div>
-            <div class="tbl-content"  id="tbl30-content" >
+            <div class="tbl-content">
                <table cellpadding="0" cellspacing="0" border="0">
                   <tbody>
 
@@ -583,7 +538,6 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
 </script>
@@ -596,31 +550,7 @@ $(window).on("load resize ", function() {
 
 <script>
 $(document).ready(function(){
-      jQuery.support.cors = true;
-        $.ajax({
-          type:"POST",
-          url:"pfunctions.php",
-          dataType: "json",
-          cache: false,
-          data:{
-            type:"7",
-          },
-          success: function(json){
-            var trHTML = '';
-              //alert(json.error);//Error checking does not work.
-             if($.trim(json.error)) { alert(json.error);}  
-            $.each(json, function(index, element){      
-              trHTML += '<tr><td>' + element.ref_id + '  </td><td>' + element.last_visit_date + '  </td></tr>';
-            });
-  
-          $("#tbl7-content").append(trHTML);
-          },
-
-
-        })
-
     jQuery.support.cors = true;
-
     $.ajax(
     {
         type: "POST",
@@ -628,8 +558,8 @@ $(document).ready(function(){
         dataType: "json",
         cache: false,
         data:{
-						type:"7",
-		  },
+            type:"7",
+      },
         success: function (json) {
             
          var trHTML = '';
@@ -646,9 +576,7 @@ $(document).ready(function(){
 </script>
 <script>
 $(document).ready(function(){
-
     jQuery.support.cors = true;
-
     $.ajax(
     {
         type: "POST",
@@ -656,8 +584,8 @@ $(document).ready(function(){
         dataType: "json",
         cache: false,
         data:{
-						type:"30",
-		  },
+            type:"30",
+      },
         success: function (json) {
             
          var trHTML = '';
@@ -674,9 +602,7 @@ $(document).ready(function(){
 </script>
 <script>
 $(document).ready(function(){
-
     jQuery.support.cors = true;
-
     $.ajax(
     {
         type: "POST",
@@ -684,8 +610,8 @@ $(document).ready(function(){
         dataType: "json",
         cache: false,
         data:{
-						type:"24",
-		  },
+            type:"24",
+      },
         success: function (json) {
             
          var trHTML = '';
