@@ -51,11 +51,14 @@
 	function search(){
 		$db = login();
 		try{
-			$stmt = $db->prepare('SELECT vit.* FROM vitals as vit INNER JOIN animal as ani on vit.animal_id = ani.animal_id WHERE ani.tag_id LIKE :tag');
+			$stmt = '';
 			if($_POST['tag_id'] > 0){
+				//echo '<script type="text/javascript">alert("tag_id > 0")';
 				$tag = "%".$_POST['tag_id']."%";
+				$stmt = $db->prepare('SELECT vit.*, ani.* FROM vitals as vit INNER JOIN animal as ani on vit.animal_id = ani.animal_id WHERE ani.tag_id LIKE :tag');
 			}else{
 				$tag = "%".$_POST['animal_id']."%";
+				$stmt = $db->prepare('SELECT vit.*, ani.* FROM vitals as vit INNER JOIN animal as ani on vit.animal_id = ani.animal_id WHERE ani.animal_id LIKE :tag');
 			}
 			$stmt->bindParam(':tag', $tag);
 			$stmt->execute();

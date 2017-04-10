@@ -45,6 +45,7 @@ Database:
 -Do we want to archive data?
 -When adding calf, setup necessary vaccines w/ dates.
 -add DOB and medical condition to vitals
+-Search using Tag ID or Animal ID searches both fields, regardless of the text field the user selected.  FIXED
 
 RPI:
 -Learn more about SQL Alchemy's timeouts, connection pooling, etc., to improve functionality
