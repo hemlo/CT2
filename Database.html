@@ -1,12 +1,16 @@
 
 <!DOCTYPE html>
+<? php
+include_once 'PHP/pfunctions.php'
+?>
 <html >
 <head>
   <meta charset="UTF-8">
-  <title>Home - Cattle Tracker</title>
-  
-  
-  
+  <title>Database</title>
+  <link rel ="stylesheet" href="css/style.css">
+  <link rel = "stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel = "stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css.map">
       <style>
       /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
       *, *:after, *:before {
@@ -16,7 +20,7 @@
 .animenu__toggle {
   display: none;
   cursor: pointer;
-  background-color: #134;
+  background-color: #4F2984;/*#134;*/
   border: 0;
   padding: 10px;
   height: 40px;
@@ -61,15 +65,18 @@
 }
 .animenu li, .animenu a {
   display: inline-block;
-  font-size: 15px;
+  font-size: 16px;
 }
+
+/* Menu Bar Text */
 .animenu a {
-  color: #cccc99;
+  color: #FFDD00;/*#cccc99;*/
   text-decoration: none;
 }
 
 .animenu__nav {
-  background-color: #134;
+  background-color: #4F2984;/*#134;*/
+  position: relative;
 }
 .animenu__nav > li {
   position: relative;
@@ -89,13 +96,15 @@
   margin-top: -2px;
   right: 10px;
 }
+
 .animenu__nav > li:hover > ul {
   opacity: 1;
   visibility: visible;
   margin: 0;
 }
 .animenu__nav > li:hover > a {
-  color: #fff;
+  background-color: #FFDD00;
+  color: #4F2984;/*#fff;*/
 }
 
 .animenu__nav__child {
@@ -107,7 +116,7 @@
   opacity: 0;
   visibility: hidden;
   margin: 20px 0 0 0;
-  background-color: #55552b;
+  background-color: rgba(79, 41, 133, 0.75); #4F2984;Purple
   transition: margin .15s, opacity .15s;
 }
 .animenu__nav__child > li {
@@ -131,23 +140,22 @@
 .animenu__nav__child a {
   padding: 10px;
   width: 100%;
-  border-color: #55552b;
+  border-color: #4F2984;/*#55552b;*/
 }
 .animenu__nav__child a:hover {
-  background-color: #0186ba;
-  border-color: #0186ba;
-  color: #fff;
+  background-color: #FFDD00;/*#0186ba;*/
+  border-top: 2px solid rgba(79, 41, 133, 0.75);
+  /*border-top-color: #4F2984;*/
+  color: #4F2984;/*#fff;*/
 }
 
 @media screen and (max-width: 767px) {
   .animenu__toggle {
     display: inline-block;
   }
-
-  .animenu__nav,
-  .animenu__nav__child {
-    display: none;
-  }
+  .animenu__nav, .animenu__nav__child {
+      display: none;
+   }
 
   .animenu__nav {
     margin: 10px 0;
@@ -155,7 +163,7 @@
   .animenu__nav > li {
     width: 100%;
     border-right: 0;
-    border-bottom: 1px solid #77773c;
+    border-bottom: 1px solid #FFDD00;/*#77773c;*/
   }
   .animenu__nav > li:last-child {
     border: 0;
@@ -185,7 +193,7 @@
 
   .animenu__nav__child {
     position: static;
-    background-color: #55552b;
+    background-color: #FFDD00; 
     margin: 0;
     transition: none;
     visibility: visible;
@@ -205,10 +213,50 @@
 .animenu__nav--open .animenu__nav__child {
   display: block;
 }
+/* END TOOLBAR */
 
+/* START TABLE AND SEARCH */
+#myInput {
+    background-image: url('/css/searchicon.png'); /* Add a search icon to input */
+    background-position: 10px 12px; /* Position the search icon */
+    background-repeat: no-repeat; /* Do not repeat the icon image */
+    width: 100%; /* Full-width */
+    font-size: 16px; /* Increase font-size */
+    padding: 12px 20px 12px 40px; /* Add some padding */
+    border: 1px solid #ddd; /* Add a grey border */
+    margin-bottom: 12px; /* Add some space below the input */
+}
+
+#myTable {
+    border-collapse: collapse; /* Collapse borders */
+    width: 100%; /* Full-width */
+    border: 1px solid #ddd; /* Add a grey border */
+    font-size: 18px; /* Increase font-size */
+}
+
+#myTable th, #myTable td {
+    text-align: left; /* Left-align text */
+    padding: 12px; /* Add padding */
+}
+
+#myTable tr {
+    /* Add a bottom border to all table rows */
+    border-bottom: 1px solid #ddd; 
+}
+
+#myTable tr.header, #myTable tr:hover {
+    /* Add a grey background color to the table header and on hover */
+    background-color: #f1f1f1;
+}
+/* END TABLE AND SEARCH */
     </style>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="js/bootbox.min.js"></script>
+  <script src="js/index.js"></script>
+  <script src="js/jsfunctions.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 
 </head>
 
@@ -221,44 +269,145 @@
   </button>
   <ul class="animenu__nav">
     <li>
-      <a href="index.php">Home</a>
+      <a href="index.html">Home</a>
     </li>
     <li>
-      <a href="Feeder.php">Live Feeder</a>
+      <a href="Feeder.html">Live Feeder</a>
       <ul class="animenu__nav__child">
-        <li><a href="Feeder.php">Feeder Home</a></li>
+        <li><a href="Feeder.html">Feeder Home</a></li>
         <li><a href="FeederSettings.php">Settings</a></li>
       </ul>
     </li> 
     <li>
-      <a href="Tracker.php">Cattle Tracker</a>
+      <a href="Tracker.html">Cattle Tracker</a>
       <ul class="animenu__nav__child">
-        <li><a href="Tracker.php">Tracker Home</a></li>
+        <li><a href="Tracker.html">Tracker Home</a></li>
         <li><a href="">Create New Geofence</a></li>
         <li><a href="TrackerSettings">Settings</a></li>
       </ul>
     </li>     
     <li>
-      <a href="Database.php">Database</a>
+      <a href="Database.html">Database</a>
       <ul class="animenu__nav__child">
-        <li><a href="">Search</a></li>
-        <li><a href="Add.php">Add Herd/Cow</a></li>
-        <li><a href="Delete.php">Delete Herd/Cow</a></li>
+        <li><a href="Database.html">Search</a></li>
+        <li><a href="Add.html">Add Cow</a></li>
+        <li><a href="Edit.html">Edit Cow</a></li>
       </ul>
-    </li>
-    <li>
-      <a href="#">About</a>
-    </li>
-    <li>
-      <a href="#">Contact</a>
-    </li>                 
+    </li>                
   </ul>
 </nav>
   
-    <script src="js/index.js"></script>
-    
-    
 
+    
+    <!-- type number does not seem to work in mozilla on linux -->
+RFID ID <input type="number" min="0" step="1" id="db_tag_input" onkeyup="db_search()" autofocus placeholder="Search for Tag ID..">
+Animal ID <input type="number" min="0" step="1" id="db_animal_input" onkeyup="db_search()">
+Herd <input type="number" min="0" step="1" id="db_herd_input" onkeyup="db_search()">
+Pasture <input type="number" min="0" step="1" id="db_pasture_input" onkeyup="db_search()">
+<br>
+Type: <select id="db_type_select" onchange="db_search()">
+	<option value="cow" >Cow</option>
+	<option value="bull" >Bull</option>
+	<option value="calf" >Calf</option>
+</select>
+ <input type="button" id="test_button">Test</input>
+ <table id="db_result_table">
+
+</table>    
+<form id="edit_form" method="post" class="form-horizontal" style="display: none;">
+	<div class="form-group">
+		<label class="col-xs-3 control-label">Animal ID</label>
+		<div class="col-xs-3">
+			<input type="numeric" class="form-control" name="edit_animal_input"/>
+		</div>
+	</div>
+  	<div class="form-group">
+		<label class="col-xs-3 control-label">RFID ID</label>
+		<div class="col-xs-5">
+			<input type="numeric" class="form-control" name="edit_tag_input"/>
+		</div>
+	</div>
+  	<div class="form-group">
+		<label class="col-xs-3 control-label">Herd</label>
+		<div class="col-xs-5">
+			<input type="numeric" class="form-control" name="edit_herd_input"/>
+		</div>
+	</div>
+  	<div class="form-group">
+		<label class="col-xs-3 control-label">Pasture</label>
+		<div class="col-xs-5">
+			<input type="numeric" class="form-control" name="edit_pasture_input"/>
+		</div>
+	</div>
+</form>
+<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="edit_modal" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" id="edit_modal_label">Edit Modal</h4>
+				</div>
+				<div class="modal-body">
+					<h3>Edit Modal Body</h3>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+					</div>
+				</div>
+			</div>
 </body>
+
+<script>
+function db_search(){
+    $.ajax({
+        type:"POST",
+        url:"PHP/pfunctions.php",
+        dataType:"json",
+        cache:false,     
+        data: {
+            tag_id: $("#db_tag_input").val(),
+            animal_id: $("#db_animal_input").val(),
+            pasture_num: $("#db_pasture_input").val(),
+            herd_num: $("#db_herd_input").val(),
+            animal_type: $("#db_type_select").val(),
+            type:"db_search",
+        },
+        success: function(json){
+            if($.trim(json.error)) { alert(json.error); return;}  
+            trHTML = '<tr class="header"><th style="width:20%;">Tag ID</th><th style="width:20%;">Cow ID</th><th style="width:10%;">Type</th><th style="width:10%;">Weight</th><th style="width:10%;">Herd</th><th style="width:10%;">Pasture</th><th style="width:10%;">Edit</th></tr>';
+            $.each(json, function(index, element){
+                trHTML += '<tr><td>' + element.tag_id + '</td><td>' + element.animal_id + '</td><td>' +element.a_type + '</td><td>' + element.weight + '</td><td>'  + element.herd_id + '</td><td>' + element.pasture_id +'</td><td><a href="#" class = "btn btn-sm btn-success" id="edit_modal_button" data-id='+index+'>Edit</a></td></tr>';
+            });
+            $('#db_result_table').html(trHTML);
+            
+        },
+    });
+    
+}
+</script>
+<script>
+$(document).ready(function(){
+	$(document).on("click", '#edit_modal_button', function(){
+		//$("#edit_modal").modal();
+		var $row = $(this).closest("tr");
+		var $tag = $row.find("td:nth-child(1)").text();
+		//THIS WORKS.  It pulls the tag number from the row.  Next I'll need to 
+		//populate the modal.  Then figure out how to update any changes.  Perhaps this
+		//can be a view only?  Just the details.
+		alert($tag);
+		
+	});
+});
+</script>
+
+<script>
+function deleteRow(t)
+{
+    var row = t.parentNode.parentNode;
+    document.getElementById("myTable").deleteRow(row.rowIndex);
+    console.log(row);
+}
+</script>
 </html>
 
