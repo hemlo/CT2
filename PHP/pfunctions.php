@@ -19,7 +19,12 @@
 	if($type == 'cow_edit'){
 		cow_edit();
 	}
-
+	if($type == 'bull_data'){
+		bull_data();
+	}
+	if($type == 'bull_edit'){
+		bull_edit();
+	}
 
 	function login(){
 		//$host="149.149.150.136";
@@ -101,7 +106,23 @@
 			print json_encode($arr);
 			}	
 	}
-
+	function bull_data(){
+		$db=login();
+		try {
+			$stmt = $db->prepare('SELECT bull.bull_id, animal.tag_id, vitals.weight, animal.herd_id, animal.pasture_id,  vitals.DOB, vitals.medical_cond, bull.castrated, bull.num_sired, bull.bull_index FROM bull JOIN animal ON bull.bull_id = animal.animal_id JOIN vitals ON vitals.vital_id = animal.animal_id WHERE animal.animal_id = :tag');
+			$tag = $_POST['tag_id'];
+			$stmt->bindParam(':tag', $tag);
+			$stmt->execute();
+			$rows = array();
+			while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+				$rows[] = $row;
+			}
+			print json_encode($rows);	
+		}catch(PDOException $e){
+			$arr = array('message' => $e->getMessage());
+			print json_encode($arr);
+			}	
+	}
 	function cow_edit(){
 		$db=login();
 		
@@ -143,7 +164,48 @@
 
 	}
 
+	function bull_edit(){
+		$db = login();
+		$return = array('message' =>'Changes Saved!');
+		$old_animal_id =$_POST['old_animal_id'];
+		$new_animal_id =$_POST['new_animal_id'];
+		$tag_id = 		$_POST['tag_id'];
+		$DOB = 			date('Y-m-d', strtotime($_POST['DOB']));
+		$med_cond = 	$_POST['med_cond'];
+		$pasture = 		$_POST['pasture'];
+		$herd = 		$_POST['herd'];
+		$weight = 		$_POST['weight'];
+		$castrated = 	$_POST['castrated'];
+		$index = 		$_POST['index'];
+		$numSired = 	$_POST['numSired'];
+
+		$q1 = 'update vitals set weight = :wei, DOB = :db, medical_cond = :med_con where vital_id = :animal_id';
+		$q2 = 'update bull set castrated = :castrated, num_sired = :numSired, bull_index = :index where bull_id = :animal_id';
+		$q3 = 'update animal set tag_id = :tag_id, herd_id = :herd, pasture_id = :pasture where animal_id = :animal_id';
+		$q4 = 'update animal set animal_id = :new_animal_id where animal_id = :old_animal_id';
+
+	try{
+		$stmt = $db->prepare($q1);
+		$stmt->execute(array(":wei" => $weight, ":db" => $DOB, ":med_con" => $med_cond, ":animal_id" => $old_animal_id));
+		$stmt2 = $db->prepare($q2);
+		$stmt2->execute(array(":castrated"=>$castrated, ":num_sired"=>$numSired, ":index"=>$index, ":animal_id" => $old_animal_id));
+		$stmt3 = $db->prepare($q3);
+		$stmt3->execute(array(":tag_id" => $tag_id, ":herd"=>$herd, ":pasture"=> $pasture, ":animal_id" => $old_animal_id));
+
+		$stmt4 = $db->prepare($q4);
+		$stmt4->execute(array(":new_animal_id" => $new_animal_id, ":old_animal_id" => $old_animal_id));
+
+
+		print json_encode($return);
+	}catch(PDOException $e){
+		$return = array('message' => $e->getMessage());
+		print json_encode($return);
+		}				
+
+	}
 	
 
 ?>
 
+	
+  
