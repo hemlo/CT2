@@ -253,10 +253,11 @@ include_once 'PHP/pfunctions.php'
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
   <script src="js/bootbox.min.js"></script>
   <script src="js/index.js"></script>
   <script src="js/jsfunctions.js"></script>
-  <script src="js/bootstrap.min.js"></script>
+ 
 
 </head>
 
@@ -306,56 +307,116 @@ Herd <input type="number" min="0" step="1" id="db_herd_input" onkeyup="db_search
 Pasture <input type="number" min="0" step="1" id="db_pasture_input" onkeyup="db_search()">
 <br>
 Type: <select id="db_type_select" onchange="db_search()">
+	<option value="">All</option>
 	<option value="cow" >Cow</option>
 	<option value="bull" >Bull</option>
 	<option value="calf" >Calf</option>
 </select>
- <input type="button" id="test_button">Test</input>
  <table id="db_result_table">
 
 </table>    
-<form id="edit_form" method="post" class="form-horizontal" style="display: none;">
-	<div class="form-group">
-		<label class="col-xs-3 control-label">Animal ID</label>
-		<div class="col-xs-3">
-			<input type="numeric" class="form-control" name="edit_animal_input"/>
-		</div>
-	</div>
-  	<div class="form-group">
-		<label class="col-xs-3 control-label">RFID ID</label>
-		<div class="col-xs-5">
-			<input type="numeric" class="form-control" name="edit_tag_input"/>
-		</div>
-	</div>
-  	<div class="form-group">
-		<label class="col-xs-3 control-label">Herd</label>
-		<div class="col-xs-5">
-			<input type="numeric" class="form-control" name="edit_herd_input"/>
-		</div>
-	</div>
-  	<div class="form-group">
-		<label class="col-xs-3 control-label">Pasture</label>
-		<div class="col-xs-5">
-			<input type="numeric" class="form-control" name="edit_pasture_input"/>
-		</div>
-	</div>
-</form>
-<div class="modal fade" id="edit_modal" tabindex="-1" role="dialog" aria-labelledby="edit_modal" aria-hidden="true">
+<div>
+<div>
+<div class="modal fade" id="cow_edit_modal" tabindex="-1" role="dialog" data-width="760" aria-labelledby="cow_edit_modal" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="edit_modal_label">Edit Modal</h4>
+				<h4 class="modal-title" id="cow_edit_modal_label">Edit Cow Info</h4>
 				</div>
 				<div class="modal-body">
-					<h3>Edit Modal Body</h3>
+					<div class = "row-fluid">
+						<div class="span5">
+							<h5>RFID Tag</h5>
+							<p><input type="numeric" id="cow_edit_tag_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_tag_chk" onclick = "document.getElementById('cow_edit_tag_input').disabled=!this.checked;" /></p>
+							<h5>Animal ID</h5>
+							<p><input type="numeric" id="cow_edit_animal_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_animal_chk" onclick = "document.getElementById('cow_edit_animal_input').disabled=!this.checked;" /></p>
+							<h5>Herd</h5>
+							<p><input type="numeric" id="cow_edit_herd_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_herd_chk" onclick = "document.getElementById('cow_edit_herd_input').disabled=!this.checked;" /></p>
+							<h5>Pasture</h5>
+							<p><input type="numeric" id="cow_edit_pasture_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_pasture_chk" onclick = "document.getElementById('cow_edit_pasture_input').disabled=!this.checked;" /></p>
+
+
+							<h5>Weight</h5>
+							<p><input type="numeric" id="cow_edit_weight_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_weight_chk" onclick = "document.getElementById('cow_edit_weight_input').disabled=!this.checked;" /></p>
+							<h5>Date of Birth (yyyy-mm-dd)</h5>
+							<p><input type="date" id="cow_edit_DOB_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_DOB_chk" onclick = "document.getElementById('cow_edit_DOB_input').disabled=!this.checked;" /></p>
+							<h5>Medical Condition</h5>
+							<p><textarea name="Text1" id="cow_edit_cond_input" disabled cols="40" rows="5"value=""></textarea>
+              <input type="checkbox" id="cow_edit_cond_chk" onclick = "document.getElementById('cow_edit_cond_input').disabled=!this.checked;" /></p>
+							<h5>Pregnant</h5>
+							<p><input type="numeric" id="cow_edit_preg_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_preg_chk" onclick = "document.getElementById('cow_edit_preg_input').disabled=!this.checked;"/></p>
+							<h5>Due Date (yyyy-mm-dd)</h5>
+							<p><input type="date" id="cow_edit_dued_input" disabled value=""></input>
+              <input type="checkbox" id="cow_edit_dued_chk" onclick = "document.getElementById('cow_edit_dued_input').disabled=!this.checked;"/></p>							
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary" id="cow_edit_modal_save">Save changes</button>
 					</div>
 				</div>
 			</div>
+</div>
+</div>
+<div>
+<div>
+<div class="modal fade" id="bull_edit_modal" tabindex="-1" role="dialog" data-width="760" aria-labelledby="bull_edit_modal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="bull_edit_modal_label">Edit Bull Info</h4>
+        </div>
+        <div class="modal-body">
+          <div class = "row-fluid">
+            <div class="span5">
+              <h5>RFID Tag</h5>
+              <p><input type="numeric" id="bull_edit_tag_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_tag_chk" onclick = "document.getElementById('bull_edit_tag_input').disabled=!this.checked;" /></p>
+              <h5>Animal ID</h5>
+              <p><input type="numeric" id="bull_edit_animal_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_animal_chk" onclick = "document.getElementById('bull_edit_animal_input').disabled=!this.checked;" /></p>
+              <h5>Herd</h5>
+              <p><input type="numeric" id="bull_edit_herd_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_herd_chk" onclick = "document.getElementById('bull_edit_herd_input').disabled=!this.checked;" /></p>
+              <h5>Pasture</h5>
+              <p><input type="numeric" id="bull_edit_pasture_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_pasture_chk" onclick = "document.getElementById('bull_edit_pasture_input').disabled=!this.checked;" /></p>
+
+
+              <h5>Weight</h5>
+              <p><input type="numeric" id="bull_edit_weight_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_weight_chk" onclick = "document.getElementById('bull_edit_weight_input').disabled=!this.checked;" /></p>
+              <h5>Date of Birth (yyyy-mm-dd)</h5>
+              <p><input type="date" id="bull_edit_DOB_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_DOB_chk" onclick = "document.getElementById('bull_edit_DOB_input').disabled=!this.checked;" /></p>
+              <h5>Medical Condition</h5>
+              <p><textarea name="Text1" id="bull_edit_cond_input" disabled cols="40" rows="5"value=""></textarea>
+              <input type="checkbox" id="bull_edit_cond_chk" onclick = "document.getElementById('bull_edit_cond_input').disabled=!this.checked;" /></p>
+              <h5>Pregnant</h5>
+              <p><input type="numeric" id="bull_edit_preg_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_preg_chk" onclick = "document.getElementById('bull_edit_preg_input').disabled=!this.checked;"/></p>
+              <h5>Due Date (yyyy-mm-dd)</h5>
+              <p><input type="date" id="bull_edit_dued_input" disabled value=""></input>
+              <input type="checkbox" id="bull_edit_dued_chk" onclick = "document.getElementById('bull_edit_dued_input').disabled=!this.checked;"/></p>              
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" id="bull_edit_modal_save">Save changes</button>
+          </div>
+        </div>
+      </div>
+</div>
+</div>
 </body>
 
 <script>
@@ -375,12 +436,11 @@ function db_search(){
         },
         success: function(json){
             if($.trim(json.error)) { alert(json.error); return;}  
-            trHTML = '<tr class="header"><th style="width:20%;">Tag ID</th><th style="width:20%;">Cow ID</th><th style="width:10%;">Type</th><th style="width:10%;">Weight</th><th style="width:10%;">Herd</th><th style="width:10%;">Pasture</th><th style="width:10%;">Edit</th></tr>';
+            trHTML = '<tr class="header"><th style="width:20%;">Tag ID</th><th style="width:20%;">Cow ID</th><th style="width:10%;">Type</th><th style="width:10%;">Herd</th><th style="width:10%;">Pasture</th><th style="width:10%;">Edit</th></tr>';
             $.each(json, function(index, element){
-                trHTML += '<tr><td>' + element.tag_id + '</td><td>' + element.animal_id + '</td><td>' +element.a_type + '</td><td>' + element.weight + '</td><td>'  + element.herd_id + '</td><td>' + element.pasture_id +'</td><td><a href="#" class = "btn btn-sm btn-success" id="edit_modal_button" data-id='+index+'>Edit</a></td></tr>';
+                trHTML += '<tr><td>' + element.tag_id + '</td><td>' + element.animal_id + '</td><td>' +element.a_type + '</td><td>' + element.herd_id + '</td><td>' + element.pasture_id +'</td><td><a href="#'+element.a_type+'_edit_modal" class = "btn btn-sm btn-success" id="'+element.a_type+'_edit_modal_button" data-toggle="modal" data-target="#'+element.a_type+'_edit_modal" data-id='+index+'>Edit</a></td></tr>';
             });
-            $('#db_result_table').html(trHTML);
-            
+            $('#db_result_table').html(trHTML);          
         },
     });
     
@@ -388,26 +448,90 @@ function db_search(){
 </script>
 <script>
 $(document).ready(function(){
-	$(document).on("click", '#edit_modal_button', function(){
-		//$("#edit_modal").modal();
-		var $row = $(this).closest("tr");
-		var $tag = $row.find("td:nth-child(1)").text();
-		//THIS WORKS.  It pulls the tag number from the row.  Next I'll need to 
-		//populate the modal.  Then figure out how to update any changes.  Perhaps this
-		//can be a view only?  Just the details.
-		alert($tag);
+  var cowEditModal = $("#cow_edit_modal");
+  var bullEditModal = $("#bull_edit_modal");
+  var bull_id="";
+  var cow_id="";
+	$(document).on("click", '#cow_edit_modal_button', function(){
 		
-	});
+		var $row = $(this).closest("tr");
+		var $tag = $row.find("td:nth-child(2)").text();
+		var $type = $row.find("td:nth-child(3)").text();
+		
+		$type += "_data";
+		$.ajax({
+
+			type:"POST",
+			url:"PHP/pfunctions.php",
+			dataType:"json",
+			cache: false,
+			data: {
+				tag_id: $tag,
+				type: $type,
+			},
+			success: function(json){
+				if($.trim(json.error)) {alert(json.error);return;}
+        $("#cow_edit_tag_input").val(json[0].tag_id);
+        $("#cow_edit_dued_input").val(json[0].due_date);
+        $("#cow_edit_preg_input").val(json[0].pregnant);
+				$("#cow_edit_DOB_input").val(json[0].DOB);
+        $("#cow_edit_cond_input").val(json[0].medical_cond);
+        $("#cow_edit_animal_input").val(json[0].cow_id);
+        $("#cow_edit_pasture_input").val(json[0].pasture_id);
+        $("#cow_edit_herd_input").val(json[0].herd_id);
+        $("#cow_edit_weight_input").val(json[0].weight);
+        cow_id = json[0].cow_id;
+			}
+		});	
+	
+
+  });
+
+  $(document).on("click", '#cow_edit_modal_save', function() {
+    $.ajax({
+      type:"POST",
+      url:"PHP/pfunctions.php",
+      dataType:"json",
+      cache:false,
+      data: {
+        type: "cow_edit",
+        old_animal_id: cow_id,
+        new_animal_id: $("#cow_edit_animal_input").val(),
+        due_date: $("#cow_edit_dued_input").val(),
+        tag_id: $("#cow_edit_tag_input").val(),
+        pregnant: $("#cow_edit_preg_input").val(),
+        DOB: $("#cow_edit_DOB_input").val(),
+        med_cond: $("#cow_edit_cond_input").val(),
+        pasture: $("#cow_edit_pasture_input").val(),
+        herd: $("#cow_edit_herd_input").val(),
+        weight: $("#cow_edit_weight_input").val(),
+      },
+      success: function(json) {
+       alert(json.message);
+      // alert("in success");
+      }
+    });
+
+    cowEditModal.modal('hide');
+    db_search();
+    $('input[type=checkbox]').attr('checked', false);
+  });
+
+  $(document).on("click", '#bull_edit_modal_button', function(){		
+    
+  });
 });
+
 </script>
 
 <script>
-function deleteRow(t)
-{
-    var row = t.parentNode.parentNode;
-    document.getElementById("myTable").deleteRow(row.rowIndex);
-    console.log(row);
-}
+
+</script>
+<script>//Have to find a way to enable these with one function
+
+</script>
+<script>
+
 </script>
 </html>
 
